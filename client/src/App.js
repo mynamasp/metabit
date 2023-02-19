@@ -2,6 +2,7 @@ import "./App.css";
 import metamask from "./images/metamask.png";
 import { ethers } from "ethers";
 import React, { useState, useEffect } from "react";
+import Functionality from "./components/Functionality";
 
 function App() {
   const [currentAccount, setCurrentAccount] = useState("");
@@ -90,6 +91,8 @@ function App() {
           <div>-----------------------------------------</div>
         </div>
       )}
+
+      <Functionality />
     </div>
   );
 }
