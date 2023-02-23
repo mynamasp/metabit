@@ -41,7 +41,7 @@ class ControlPanel extends Component {
             />
           ))}
         </div>
-        <div className="mt-12 mx-auto items-center justify-center">
+        <div className="mt-12 mx-auto items-center justify-center mb-20">
           <div className="flex w-full">
             <TempControl />
             <ActuatorControl key={4} name={"Actuator 4"} />

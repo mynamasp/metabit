@@ -4,6 +4,7 @@ import Navbar from "./Navbar";
 import InfoBar from "./InfoBar";
 import ControlPanel from "./ControlPanel";
 import TopBar from "./TopBar";
+import Devices from "./Devices";
 import {
   updateDeviceState,
   getCurrentWalletConnected,
@@ -44,6 +45,9 @@ function Functionality(props) {
         <div className={`${currentPage !== 1 ? "hidden" : ""}`}>
           <InfoBar />
           <ControlPanel handleStateChange={handleStateChange} />
+        </div>
+        <div className={`${currentPage !== 3 ? "hidden" : ""}`}>
+          <Devices />
         </div>
       </div>
     </React.Fragment>
