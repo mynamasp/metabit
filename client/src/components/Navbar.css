@@ -1,0 +1,33 @@
+.vertical {
+    position: fixed;
+    background-image: url(../images/navbar.png);
+    top: 0;
+    bottom: 0;
+    right: calc(100% - 100px);
+    left: 0;
+  }
+  .wrapper {
+    top: 100%;
+    position: absolute;
+    margin-right: 100%;
+    transform: rotate(-90deg);
+    translate: 25px -70px;
+    transform-origin: top left;
+    width: 100vh;
+  }
+
+  .wrapper>a {
+    letter-spacing: 3px;
+  }
+  
+  .selected {
+    color: rgba(255, 255, 255, 1);
+  }
+
+  .unselected {
+    color: rgba(255, 255, 255, 0.5);
+  };
+
+
+
+

@@ -1,6 +1,6 @@
 import "./App.css";
 import metamask from "./images/metamask.png";
-import { ethers } from "ethers";
+//import { ethers } from "ethers";
 import React, { useState, useEffect } from "react";
 import Functionality from "./components/Functionality";
 
@@ -82,7 +82,8 @@ function App() {
           </div>
         </div>
       ) : correctNetwork ? (
-        <div className="App">Add Next Page Here</div>
+        
+        <Functionality wallet />
       ) : (
         <div className="flex flex-col justify-center items-center mb-20 font-bold text-2xl gap-y-3">
           <div>-----------------------------------------</div>
@@ -91,8 +92,6 @@ function App() {
           <div>-----------------------------------------</div>
         </div>
       )}
-
-      <Functionality />
     </div>
   );
 }

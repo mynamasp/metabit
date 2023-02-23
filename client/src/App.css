@@ -2,7 +2,11 @@
   text-align: center;
 }
 
+body {
+}
+
 .loading{
+
   background-image: url(./images/bg1.png);
   background-size: cover;
   background-repeat:no-repeat;
