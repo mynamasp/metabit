@@ -8,7 +8,7 @@ class ControlPanel extends Component {
       { id: 1, name: "Actuator 1", value: false },
       { id: 2, name: "Actuator 2", value: false },
       { id: 3, name: "Actuator 3", value: false },
-    ]
+    ],
   };
 
   handleStateChange = (actuatorId) => {
@@ -17,6 +17,10 @@ class ControlPanel extends Component {
     actuatorControllers.map((actuatorControl) => {
       if (actuatorControl.id === actuatorId) {
         actuatorControl.value = !actuatorControl.value;
+        this.props.handleStateChange(
+          actuatorControl.name,
+          actuatorControl.value
+        );
       }
     });
 

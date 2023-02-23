@@ -1,15 +1,17 @@
 import React, { useState, useEffect } from "react";
 import "./Functionality.css";
-import Date_Time from "./Date_Time";
-import Switches from "./Switches";
-import Weather from "./Weather";
 import Navbar from "./Navbar";
 import InfoBar from "./InfoBar";
 import ControlPanel from "./ControlPanel";
 import TopBar from "./TopBar";
+import {
+  updateDeviceState,
+  getCurrentWalletConnected,
+} from "../utils/interact";
 
 function Functionality(props) {
   const [walletAddress, setWallet] = useState("");
+  const [currentPage, setPage] = useState(1);
 
   useEffect(() => {
     const loadWallet = async () => {
@@ -20,36 +22,29 @@ function Functionality(props) {
     loadWallet();
   }, []);
 
-  const getCurrentWalletConnected = async () => {
-    if (window.ethereum) {
-      try {
-        const addressArray = await window.ethereum.request({
-          method: "eth_accounts",
-        });
-        if (addressArray.length > 0) {
-          return {
-            address: addressArray[0],
-          };
-        } else {
-          return {
-            address: "",
-          };
-        }
-      } catch (err) {
-        return {
-          address: "",
-        };
-      }
-    }
+  const onPageChange = (page) => {
+    setPage(page);
+    console.log(currentPage);
+  };
+
+  const handleStateChange = async (deviceName, state) => {
+    console.log(deviceName, state);
+    updateDeviceState(
+      "0xd0b98db9aa9de860287d9898b81671c136330645", //Change to get walletAddress
+      deviceName,
+      state
+    );
   };
 
   return (
     <React.Fragment>
-      <Navbar />
+      <Navbar handlePageChange={onPageChange} />
       <div className="ml-28">
         <TopBar walletAddress={"0xd0b98db9aa9de860287d9898b81671c136330645"} />
-        <InfoBar />
-        <ControlPanel />
+        <div className={`${currentPage !== 1 ? "hidden" : ""}`}>
+          <InfoBar />
+          <ControlPanel handleStateChange={handleStateChange} />
+        </div>
       </div>
     </React.Fragment>
   );
