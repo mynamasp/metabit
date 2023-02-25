@@ -16,7 +16,10 @@ import {
 function Functionality(props) {
   const [walletAddress, setWallet] = useState({});
   const [currentPage, setPage] = useState(1);
-  const [logData, setLogData] = useState();
+  const [logData, setLogData] = useState([
+    ["Name", "Time"],
+    ["Name", "Time"],
+  ]);
 
   useEffect(() => {
     const loadWallet = async () => {
@@ -29,7 +32,8 @@ function Functionality(props) {
     };
     loadWallet();
   }, []);
-  console.log(walletAddress);
+
+  console.log(walletAddress.address);
   console.log(logData);
 
   function faceLogContractListener() {
@@ -67,7 +71,7 @@ function Functionality(props) {
           <ControlPanel handleStateChange={handleStateChange} />
         </div>
         <div className={`${currentPage !== 2 ? "hidden" : "fade-in"}`}>
-          <Streams />
+          <Streams faceLog={logData} />
         </div>
         <div className={`${currentPage !== 3 ? "hidden" : "fade-in"}`}>
           <Devices />
