@@ -1,5 +1,5 @@
 const alchemyKey =
-  "https://polygon-mumbai.g.alchemy.com/v2/ySqff11qp0JsorbeVz4Veeezn8YVy7q_";
+  "wss://polygon-mumbai.g.alchemy.com/v2/ySqff11qp0JsorbeVz4Veeezn8YVy7q_";
 
 const { createAlchemyWeb3 } = require("@alch/alchemy-web3");
 
@@ -12,6 +12,19 @@ export const endNodeContract = new web3.eth.Contract(
   contractABI,
   contractAddress
 );
+
+const LogContractABI = require("./log-contract-abi.json");
+const LogContractAddress = "0x6393F0d56d86a2c3177e1466f848312be026801f";
+
+export const LogContract = new web3.eth.Contract(
+  LogContractABI,
+  LogContractAddress
+);
+
+export const getLogData = async () => {
+  const message = LogContract.methods.getRecords().call();
+  return message;
+};
 
 export const updateDeviceState = async (address, deviceName, state) => {
   const transactionParameters = {
@@ -34,6 +47,7 @@ export const updateDeviceState = async (address, deviceName, state) => {
     console.log(error);
   }
 };
+
 export const getCurrentWalletConnected = async () => {
   if (window.ethereum) {
     try {

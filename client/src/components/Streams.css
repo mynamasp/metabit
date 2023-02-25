@@ -1,0 +1,29 @@
+.log-box{
+    box-sizing: border-box;
+    width: 320px;
+    height: 420px;
+    background: #FFFFFF;
+    border: 1px solid #D2D2D2;
+    box-shadow: 0px 4px 12px -3px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+  }
+
+  .stream-box{
+    box-sizing: border-box;
+    width: 500px;
+    height: 300px;
+    background: #FFFFFF;
+    border: 1px solid #D2D2D2;
+    box-shadow: 0px 4px 12px -3px rgba(0, 0, 0, 0.25);
+    border-radius: 20px;
+  }
+
+  .underscore-line{
+    height: 1px;
+    background-color: rgba(128, 128, 128, 0.502);
+    width: 60%;
+    margin-top: 10px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+

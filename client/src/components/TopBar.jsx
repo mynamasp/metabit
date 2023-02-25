@@ -3,7 +3,6 @@ import "./TopBar.css";
 
 class TopBar extends Component {
   state = { walletAddress: this.props.walletAddress };
-
   render() {
     return (
       <div className="flex w-full">

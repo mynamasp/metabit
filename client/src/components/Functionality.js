@@ -5,23 +5,43 @@ import InfoBar from "./InfoBar";
 import ControlPanel from "./ControlPanel";
 import TopBar from "./TopBar";
 import Devices from "./Devices";
+import Streams from "./Streams";
 import {
+  LogContract,
   updateDeviceState,
   getCurrentWalletConnected,
+  getLogData,
 } from "../utils/interact";
 
 function Functionality(props) {
-  const [walletAddress, setWallet] = useState("");
+  const [walletAddress, setWallet] = useState({});
   const [currentPage, setPage] = useState(1);
+  const [logData, setLogData] = useState();
 
   useEffect(() => {
     const loadWallet = async () => {
       const { address } = await getCurrentWalletConnected();
-      setWallet(address);
-      console.log(walletAddress);
+      setWallet({ address });
+      const loadLogData = await getLogData();
+
+      setLogData(loadLogData);
+      faceLogContractListener();
     };
     loadWallet();
   }, []);
+  console.log(walletAddress);
+  console.log(logData);
+
+  function faceLogContractListener() {
+    LogContract.events.NewRecordAdded({}, (error, data) => {
+      if (error) {
+        console.log(error);
+      } else {
+        setLogData(data);
+        console.log(data);
+      }
+    });
+  }
 
   const onPageChange = (page) => {
     setPage(page);
@@ -41,12 +61,15 @@ function Functionality(props) {
     <React.Fragment>
       <Navbar handlePageChange={onPageChange} />
       <div className="ml-28">
-        <TopBar walletAddress={"0xd0b98db9aa9de860287d9898b81671c136330645"} />
-        <div className={`${currentPage !== 1 ? "hidden" : ""}`}>
+        <TopBar walletAddress={walletAddress} />
+        <div className={`${currentPage !== 1 ? "hidden" : "fade-in"}`}>
           <InfoBar />
           <ControlPanel handleStateChange={handleStateChange} />
         </div>
-        <div className={`${currentPage !== 3 ? "hidden" : ""}`}>
+        <div className={`${currentPage !== 2 ? "hidden" : "fade-in"}`}>
+          <Streams />
+        </div>
+        <div className={`${currentPage !== 3 ? "hidden" : "fade-in"}`}>
           <Devices />
         </div>
       </div>
